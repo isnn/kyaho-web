@@ -7,7 +7,10 @@ defineOptions({
 </script>
 
 <template>
-  <section class="bg-[#050f07] text-white flex justify-center flex-col items-center pb-16">
+  <section
+    id="projects"
+    class="bg-[#050f07] text-white flex justify-center flex-col items-center pb-16"
+  >
     <h2 class="tracking-widest font-bold my-4 text-white text-xl">PROJECTS</h2>
 
     <div class="flex flex-col gap-20 w-full">
@@ -21,6 +24,7 @@ defineOptions({
         }"
         link="/projects/billing-platform"
         :image="'/assets/emone.png'"
+        :show-action-button="false"
       >
       </ProjectCard>
 
@@ -36,6 +40,7 @@ defineOptions({
         }"
         :image="'/assets/spert.png'"
         :showNdaBadge="true"
+        :show-action-button="false"
       >
       </ProjectCard>
 
@@ -51,6 +56,7 @@ defineOptions({
         :image-bg-color="'red'"
         :image="'/assets/mant.png'"
         :showNdaBadge="true"
+        :show-action-button="false"
       >
       </ProjectCard>
     </div>

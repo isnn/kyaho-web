@@ -19,6 +19,7 @@
       </p>
 
       <a
+        v-if="showActionButton !== false"
         :href="link"
         target="_blank"
         rel="noopener noreferrer"
@@ -115,6 +116,10 @@ defineProps({
   showNdaBadge: {
     type: Boolean,
     default: false,
+  },
+  showActionButton: {
+    type: Boolean,
+    default: true,
   },
 })
 </script>

@@ -33,8 +33,9 @@ const SIZE_RANDOM_MAX = 4 // Max dot size when scattered
 const SCATTERED_ALPHA_MIN = 0.9 // Min opacity when scattered (base)
 const SCATTERED_ALPHA_MAX = 0.9 // Max opacity when scattered (base + twinkle)
 const SCATTERED_VISIBLE_PCT = 0.05 // Fraction of dots visible when scattered (0–1, e.g. 0.4 = 40%)
-const DRIFT_AMP = 4.0 // Drift amplitude (px) for idle floating
+const DRIFT_AMP = 8.0 // Drift amplitude (px) for idle floating
 const DRIFT_SPEED = 0.6 // Drift speed multiplier
+const DRIFT_JITTER = 9.0 // Extra randomized drift strength before hover
 const SCATTER_RANGE = 10 // Scatter spread factor
 
 // ── Shared ──────────────────────────────────────────────────────
@@ -221,6 +222,7 @@ const vertexShader = /* glsl */ `
   uniform float uVibrateSpeed;
   uniform float uDriftAmp;
   uniform float uDriftSpeed;
+  uniform float uDriftJitter;
   uniform float uTwinkleSpeed;
   uniform vec2 uResolution;
   uniform float uDpr;
@@ -239,10 +241,28 @@ const vertexShader = /* glsl */ `
 
     vec2 pos = mix(aRandomPos, aMapPos, smoothP);
 
-    // Idle drift when scattered
+    // Idle drift when scattered (more randomized but still smooth)
     float scattered = 1.0 - smoothP;
-    pos.x += sin(uTime * uDriftSpeed + aPhase) * uDriftAmp * scattered;
-    pos.y += cos(uTime * uDriftSpeed * 0.75 + aPhase * 1.3) * uDriftAmp * scattered;
+
+    float seedA = fract(sin(aPhase * 17.31) * 43758.5453);
+    float seedB = fract(sin(aPhase * 63.97) * 12515.8731);
+
+    float driftX =
+      sin(uTime * uDriftSpeed * (0.55 + seedA * 1.25) + aPhase * 1.9) +
+      0.6 * sin(uTime * uDriftSpeed * (1.10 + seedB * 1.70) + aPhase * 4.2);
+
+    float driftY =
+      cos(uTime * uDriftSpeed * (0.65 + seedB * 1.10) + aPhase * 2.3) +
+      0.6 * cos(uTime * uDriftSpeed * (1.25 + seedA * 1.60) + aPhase * 3.6);
+
+    vec2 randDir = normalize(vec2(
+      sin(aPhase * 12.9898),
+      cos(aPhase * 78.233)
+    ));
+
+    pos.x += driftX * uDriftAmp * 0.55 * scattered;
+    pos.y += driftY * uDriftAmp * 0.55 * scattered;
+    pos += randDir * sin(uTime * uDriftSpeed * 2.2 + aPhase * 5.1) * uDriftJitter * scattered;
 
     // Vibration when formed
     float vibrateIntensity = smoothstep(0.82, 1.0, p);
@@ -338,6 +358,7 @@ function initThree(geometry) {
     uVibrateSpeed: { value: VIBRATE_SPEED },
     uDriftAmp: { value: DRIFT_AMP },
     uDriftSpeed: { value: DRIFT_SPEED },
+    uDriftJitter: { value: DRIFT_JITTER },
     uTwinkleSpeed: { value: TWINKLE_SPEED },
     uResolution: { value: new THREE.Vector2(W, H) },
     uDpr: { value: dpr },
