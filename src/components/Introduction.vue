@@ -1,5 +1,6 @@
 <script setup>
 import DotWorldMap from './animate/DotWorldMap.vue'
+import { trackMetric } from '../service/telemetry/sentry'
 
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId)
@@ -13,6 +14,11 @@ const scrollToSection = (sectionId) => {
       behavior: 'smooth',
     })
   }
+}
+
+const onGetStartedClick = () => {
+  trackMetric('get_started_click_total', 1, { location: 'introduction_hero' })
+  scrollToSection('stacks')
 }
 </script>
 
@@ -35,7 +41,7 @@ const scrollToSection = (sectionId) => {
         <p class="text-2xl mb-8">Let's turn your dream idea into reality</p>
         <button
           class="bg-linear-to-r from-primary-500 to-accent-500 text-white px-8 py-3 italic hover:opacity-60 hover:cursor-pointer transition rounded-3xl"
-          @click="scrollToSection('stacks')"
+          @click="onGetStartedClick"
         >
           Get Started
         </button>

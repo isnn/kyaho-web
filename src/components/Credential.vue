@@ -1,11 +1,23 @@
 <script setup>
 import ExperienceCredentialCard from './card/ExperienceCredentialCard.vue'
 import VerifiedCredentialCard from './card/VerifiedCredentialCard.vue'
+import { trackEvent } from '../service/telemetry/sentry'
 
 const startYear = 2024
 const currentYear = new Date().getFullYear()
 const yearsExperience = currentYear - startYear + 1
 const experienceLabel = `${yearsExperience}++ Years Experience`
+
+const onCredentialClick = (payload) => {
+  trackEvent(
+    'credential_click',
+    {
+      location: 'credential_section',
+      provider: payload?.providerName || 'unknown',
+    },
+    true,
+  )
+}
 
 defineOptions({
   name: 'Credential',
@@ -32,6 +44,7 @@ defineOptions({
         verification-url="https://www.skills.google/public_profiles/9bcf98b6-04ee-4f4d-8d90-ae0dd64a03dc"
         accent-color="rgba(66,133,244,0.45)"
         :is-verified="true"
+        @credential-click="onCredentialClick"
       />
 
       <VerifiedCredentialCard
@@ -42,6 +55,7 @@ defineOptions({
         accent-color="rgba(16,185,129,0.45)"
         :is-verified="true"
         :no-padding="true"
+        @credential-click="onCredentialClick"
       />
     </div>
   </section>

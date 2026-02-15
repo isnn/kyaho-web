@@ -35,6 +35,7 @@
         :href="verificationUrl"
         target="_blank"
         rel="noopener noreferrer"
+        @click="onCredentialClick"
         class="duration-500 ease-in-out opacity-60 group-hover:opacity-100 inline-flex items-center gap-2.5 rounded-md text-sm py-1.5 px-3 mt-2 text-white group-hover:text-white bg-transparent from-transparent to-transparent group-hover:bg-accent-800 hover:rounded-md w-fit"
       >
         <span>
@@ -57,7 +58,9 @@
 </template>
 
 <script setup>
-defineProps({
+const emit = defineEmits(['credential-click'])
+
+const props = defineProps({
   providerLogo: String,
   providerName: String,
   isVerified: Boolean,
@@ -69,4 +72,11 @@ defineProps({
     default: false,
   },
 })
+
+const onCredentialClick = () => {
+  emit('credential-click', {
+    providerName: props.providerName,
+    verificationUrl: props.verificationUrl,
+  })
+}
 </script>
