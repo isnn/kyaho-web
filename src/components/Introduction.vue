@@ -1,0 +1,45 @@
+<script setup>
+import DotWorldMap from './animate/DotWorldMap.vue'
+
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    const headerOffset = 80
+    const elementPosition = element.getBoundingClientRect().top
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    })
+  }
+}
+</script>
+
+<template>
+  <section
+    id="about"
+    class="relative overflow-hidden bg-[#050f07] text-white flex flex-col lg:flex-row items-center min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] px-6 lg:px-8"
+  >
+    <div class="w-full lg:ml-[30%] h-[48vh] sm:h-[56vh] lg:h-screen">
+      <DotWorldMap />
+    </div>
+
+    <div
+      class="relative z-10 w-full lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2 bg-[linear-gradient(to_right,rgba(5,15,7,0.98)_80%,rgba(5,15,7,0.1)_100%)] flex items-center"
+    >
+      <div class="w-full lg:w-1/2 text-left px-4 sm:px-8 lg:pl-24 lg:pr-8 py-8 lg:py-12">
+        <h1 class="text-6xl font-bold mb-5">Hi, I am</h1>
+        <h1 class="text-6xl font-bold mb-5">Isnan Firmansyah</h1>
+        <p class="text-2xl mb-8">Fullstack Engineer</p>
+        <p class="text-2xl mb-8">Let's turn your dream idea into reality</p>
+        <button
+          class="bg-linear-to-r from-primary-500 to-accent-500 text-white px-8 py-3 italic hover:opacity-60 hover:cursor-pointer transition rounded-3xl"
+          @click="scrollToSection('stacks')"
+        >
+          Get Started
+        </button>
+      </div>
+    </div>
+  </section>
+</template>
