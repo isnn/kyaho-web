@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-import Label from '../label/label.vue'
+import Label from '../label/Label.vue'
 import { twMerge } from 'tailwind-merge'
 
 defineProps({
