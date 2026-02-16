@@ -42,11 +42,13 @@ onBeforeUnmount(() => {
           <nav
             :class="
               isScrolled
-                ? 'px-8 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg transition-all duration-300'
+                ? 'max-w-[calc(100vw-1rem)] overflow-x-auto px-3 sm:px-6 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg transition-all duration-300'
                 : 'flex border-0/0 border-transparent transition-all duration-300'
             "
           >
-            <ul class="flex space-x-8 p-4 justify-center">
+            <ul
+              class="flex gap-4 sm:gap-8 p-3 sm:p-4 justify-center whitespace-nowrap text-sm sm:text-base"
+            >
               <li
                 class="cursor-pointer hover:text-primary-400 transition"
                 @click="scrollToSection('about')"
