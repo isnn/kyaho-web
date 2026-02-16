@@ -1,13 +1,13 @@
 <template>
   <div
-    class="group relative flex items-center gap-4 rounded-2xl p-6 bg-[#141516] backdrop-blur-xl transition-all duration-300"
+    class="group relative flex items-center gap-3 sm:gap-4 rounded-2xl p-4 sm:p-6 bg-[#141516] backdrop-blur-xl transition-all duration-300"
   >
     <div
       class="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-accent-500 opacity-0 group-hover:opacity-60 transition-opacity"
     />
 
     <div
-      class="relative z-10 flex h-24 w-24 items-center justify-center rounded-xl border border-white/10 overflow-hidden"
+      class="relative z-10 flex h-16 w-16 sm:h-24 sm:w-24 items-center justify-center rounded-xl border border-white/10 overflow-hidden"
       :class="{ 'bg-black/40': !noPadding }"
     >
       <img
@@ -17,9 +17,9 @@
       />
     </div>
 
-    <div class="relative z-10 flex flex-col gap-2 flex-1 pr-12">
+    <div class="relative z-10 flex flex-col gap-2 flex-1 pr-0 sm:pr-12 min-w-0">
       <div class="flex items-center justify-between">
-        <h3 class="text-white font-medium">
+        <h3 class="text-white font-medium wrap-break-word">
           {{ providerName }}
         </h3>
 

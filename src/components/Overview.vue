@@ -3,8 +3,10 @@
     <div class="text-center">
       <h2 class="tracking-widest font-bold my-4 text-white text-xl">STACK</h2>
     </div>
-    <div class="px-4 lg:px-24 flex flex-col lg:flex-row w-full justify-center items-center">
-      <div class="flex gap-4 items-center justify-center flex-wrap w-full lg:max-w-[35%] p-12">
+    <div class="px-4 sm:px-6 lg:px-24 flex flex-col lg:flex-row w-full justify-center items-center">
+      <div
+        class="flex gap-3 sm:gap-4 items-center justify-center flex-wrap w-full lg:max-w-[35%] p-6 sm:p-12"
+      >
         <div
           class="w-16 h-16 bg-[#141516] rounded-md flex items-center justify-center hover:bg-accent-800 transition-all group"
         >
@@ -109,7 +111,7 @@
       <div
         class="flex flex-col gap-4 justify-center items-center lg:items-start px-[5%] w-full lg:w-1/2"
       >
-        <div class="flex flex-row justify-center lg:justify-start gap-2 w-full">
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2 w-full">
           <Tooltip content="Foundation">
             <Highlighter class="w-13.25 h-13.25">
               <svg
@@ -131,7 +133,7 @@
           <Highlighter class="px-4">PHP</Highlighter>
           <Highlighter class="px-4">Python</Highlighter>
         </div>
-        <div class="flex flex-row justify-center lg:justify-start gap-2 w-full">
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2 w-full">
           <Tooltip content="Front-End">
             <Highlighter class="w-13.25 h-13.25">
               <svg
@@ -153,7 +155,7 @@
           <Highlighter class="px-4">Next.js</Highlighter>
           <Highlighter class="px-4">Tanstack</Highlighter>
         </div>
-        <div class="flex flex-row justify-center lg:justify-start gap-2 w-full">
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2 w-full">
           <Tooltip content="Back-End">
             <Highlighter class="w-13.25 h-13.25">
               <svg
@@ -175,7 +177,7 @@
           <Highlighter class="px-4">Laravel</Highlighter>
           <Highlighter class="px-4">Django</Highlighter>
         </div>
-        <div class="flex flex-row justify-center lg:justify-start gap-2 w-full">
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2 w-full">
           <Tooltip content="Infrastructure">
             <Highlighter class="w-13.25 h-13.25">
               <svg
@@ -197,7 +199,7 @@
           <Highlighter class="px-4">GCP</Highlighter>
           <Highlighter class="px-4">Sentry</Highlighter>
         </div>
-        <div class="flex flex-row justify-center lg:justify-start gap-2 w-full">
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2 w-full">
           <Tooltip content="Database">
             <Highlighter class="w-13.25 h-13.25">
               <svg

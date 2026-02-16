@@ -29,7 +29,9 @@ defineOptions({
     <h2 class="tracking-widest font-bold my-4 text-white text-xl">VERIFIED SKILLS</h2>
 
     <!-- Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div
+      class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-6 lg:px-0 w-full max-w-7xl"
+    >
       <ExperienceCredentialCard
         description="Software Engineering & System Architecture"
         provider-logo="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg"

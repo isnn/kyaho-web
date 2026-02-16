@@ -1,6 +1,6 @@
 <template>
   <article
-    class="flex flex-col px-12 lg:px-20 lg:py-8 justify-between transition-colors duration-300"
+    class="flex flex-col px-4 sm:px-8 lg:px-20 lg:py-8 justify-between transition-colors duration-300"
     :class="alignText === 'left' ? 'lg:flex-row' : 'lg:flex-row-reverse'"
   >
     <div class="lg:w-2/3 my-[5%]">
