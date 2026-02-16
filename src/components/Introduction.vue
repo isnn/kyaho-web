@@ -51,7 +51,7 @@ const onGetStartedClick = () => {
           interactive apps.
         </p>
 
-        <p class="text-lg italic sm:text-md lg:text-xl mb-6 sm:mb-8 whitespace-nowrap">
+        <p class="text-lg italic sm:text-md lg:text-xl mb-6 sm:mb-8 md:whitespace-nowrap">
           Let's turn your dream idea into reality
         </p>
         <button
