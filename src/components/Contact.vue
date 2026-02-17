@@ -3,7 +3,7 @@
 <template>
   <section
     id="contact"
-    class="bg-[#050f07] text-white pb-16 pt-18 flex flex-col justify-center items-center"
+    class="bg-[#050f07] text-white pb-16 pt-18 flex flex-col justify-center items-center text-center px-4"
   >
     <h1 class="font-bold text-2xl">Turning Ambitious Ideas into Reality</h1>
     <p class="font-light text-md text-white/40">Available for remote collaborations worldwide</p>

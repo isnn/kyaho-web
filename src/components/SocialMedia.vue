@@ -1,5 +1,7 @@
 <template>
-  <section class="bg-[#050f07] text-white flex justify-center items-center py-4">
+  <section
+    class="bg-[#050f07] text-white flex flex-col sm:flex-row justify-center items-center py-4 gap-3 sm:gap-0 px-4"
+  >
     <a
       href="mailto:isnan@hokya.dev"
       class="flex items-center group hover:text-secondary-500 cursor-pointer transition-colors duration-300"
@@ -18,10 +20,10 @@
           />
         </svg>
       </div>
-      <div class="text-sm text-center font-light"><span>isnan@hokya.dev</span></div>
+      <div class="text-sm text-center font-light break-all"><span>isnan@hokya.dev</span></div>
     </a>
 
-    <a href="https://hokya.dev" class="ml-4" @click="onWebsiteClick">
+    <a href="https://hokya.dev" class="sm:ml-4" @click="onWebsiteClick">
       <div
         class="flex items-center group hover:text-secondary-500 cursor-pointer transition-colors duration-300"
       >
