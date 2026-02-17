@@ -58,17 +58,6 @@ export const trackEvent = (
 					...data,
 				} as unknown as { [key: string]: string },
 			})
-            
-		// if (import.meta.env.MODE !== 'production') {
-		// 	Sentry.captureMessage(`User Action: ${name}`, {
-		// 		level: 'info',
-		// 		extra: data,
-		// 		tags: {
-		// 			action_name: name,
-		// 			...data,
-		// 		} as unknown as { [key: string]: string },
-		// 	})
-		// }
 
 		messageCount++
 
