@@ -26,7 +26,7 @@ defineOptions({
 
 <template>
   <section class="bg-[#050f07] text-white flex justify-center flex-col items-center">
-    <h2 class="tracking-widest font-bold my-4 text-white text-xl">VERIFIED SKILLS</h2>
+    <h2 class="tracking-widest font-bold my-4 text-white text-xl">VERIFIED SKILLS CERTIFIED</h2>
 
     <!-- Grid -->
     <div

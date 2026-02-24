@@ -1,44 +1,36 @@
-const buildContactSyncUrl = () => {
-  const base = import.meta.env.VITE_API_BASE_URL?.trim()
-  if (!base) {
-    throw new Error('Missing VITE_API_BASE_URL')
-  }
+import axios from 'axios'
 
-  const normalizedBase = base.endsWith('/') ? base : `${base}/`
-  return new URL('api/v1/contact/sync', normalizedBase).toString()
+const parseErrorMessage = (data) => {
+  if (typeof data?.message === 'string' && data.message.trim()) return data.message
+  if (typeof data?.error === 'string' && data.error.trim()) return data.error
+  return 'Something went wrong'
 }
 
-const BYPASS_DELAY_MS = 700
-const BYPASS_API_FOR_TEST = true
-
 export const submitContactSync = async (payload) => {
-  const body = {
-    ...payload,
-    source: 'portfolio_web',
-  }
-
-  if (BYPASS_API_FOR_TEST) {
-    await new Promise((resolve) => setTimeout(resolve, BYPASS_DELAY_MS))
-    return { ok: true }
+  const requestBody = {
+    email: payload.email?.trim() ?? '',
+    brief: payload.briefObjectives?.trim() ?? payload.brief?.trim() ?? '',
+    inquiry_type: payload.inquiryType?.trim() ?? '',
+    organization: payload.organization?.trim() ?? payload.nameOrOrganization?.trim() ?? '',
   }
 
   try {
-    const response = await fetch(buildContactSyncUrl(), {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'omit',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_BASE_URL}/api/sync`,
+      requestBody,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-      body: JSON.stringify(body),
-    })
-
-    if (!response.ok) {
-      return { ok: false, message: 'Something went wrong' }
+    )
+    if (response.status !== 201) {
+      throw new Error(parseErrorMessage(response.data))
     }
 
-    return { ok: true }
-  } catch {
-    return { ok: false, message: 'Something went wrong' }
+    return response.data
+  } catch (error) {
+    const responseData = error?.response?.data
+    throw new Error(parseErrorMessage(responseData))
   }
 }

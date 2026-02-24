@@ -48,10 +48,10 @@ export const useContactSync = () => {
       isSuccess.value = false
       errorMessage.value = ''
 
-      const result = await submitContactSync(payload)
-
-      if (!result.ok) {
-        errorMessage.value = 'Something went wrong'
+      try {
+        await submitContactSync(payload)
+      } catch (error) {
+        errorMessage.value = error?.message || 'Something went wrong'
         isSubmitting.value = false
         return
       }
